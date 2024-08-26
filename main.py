@@ -101,5 +101,5 @@ def is_max_portieri(self, squadra: Squadra):
     if(len(squadra.squadra) > 2):
         print("Numero massimo di portieri raggiunto")
         return True
-    else
+    else:
         return False
