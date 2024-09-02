@@ -3,9 +3,9 @@ class Giocatore:
         self.nome_giocatore = nome_giocatore
         self.prezzo = prezzo
 
-class Portiere:
-    def __init__(self):
-        self.portieri = []
+class Portiere(Giocatore):
+    def __init__(self, nome_giocatore: str, prezzo: int):
+        super().__init__(nome_giocatore, prezzo)
 
 class Difensore(Giocatore):
     def __init__(self, nome_giocatore: str, prezzo: int):
