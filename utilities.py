@@ -1,4 +1,4 @@
-from classes import Giocatore, Squadra, Portiere
+from classes import Giocatore, Squadra
 
 
 def is_max_goalkeeper(self, squadra: Squadra):
@@ -8,12 +8,55 @@ def is_max_goalkeeper(self, squadra: Squadra):
     else:
         return False
 
+def is_max_defender(self, squadra: Squadra):
+    if (len(squadra.difensori) > 7):
+        print("Numero massimo di difensori raggiunto")
+        return True
+    else:
+        return False
+
+def is_max_midfielder(self, squadra: Squadra):
+    if (len(squadra.centrocampisti) > 7):
+        print("Numero massimo di centrocampisti raggiunto")
+        return True
+    else:
+        return False
+def is_max_striker(self, squadra: Squadra):
+    if (len(squadra.attaccanti) > 5):
+        print("Numero massimo di attaccanti raggiunto")
+        return True
+    else:
+        return False
+
 
 def create_goalkeeper_and_insert_in_team(self, nome_giocatore: str, prezzo: int, squadra_vincente_giocatore: Squadra,
-                                         lista_giocatori: list):
+                                         lista_giocatori: list, ):
     # portieri = Portiere()
     squadra_vincente_giocatore.portieri.append(Giocatore(nome_giocatore, prezzo))
-    # squadra_vincente_giocatore.portieri.append(portieri)
+
+    update_remaining_credits(squadra_vincente_giocatore, prezzo)
+    lista_giocatori.remove(nome_giocatore)
+
+def create_defender_and_insert_in_team(self, nome_giocatore: str, prezzo: int, squadra_vincente_giocatore: Squadra,
+                                         lista_giocatori: list, ):
+    # portieri = Portiere()
+    squadra_vincente_giocatore.difensori.append(Giocatore(nome_giocatore, prezzo))
+
+    update_remaining_credits(squadra_vincente_giocatore, prezzo)
+    lista_giocatori.remove(nome_giocatore)
+
+def create_midfielder_and_insert_in_team(self, nome_giocatore: str, prezzo: int, squadra_vincente_giocatore: Squadra,
+                                         lista_giocatori: list, ):
+    # portieri = Portiere()
+    squadra_vincente_giocatore.centrocampisti.append(Giocatore(nome_giocatore, prezzo))
+
+    update_remaining_credits(squadra_vincente_giocatore, prezzo)
+    lista_giocatori.remove(nome_giocatore)
+
+def create_striker_and_insert_in_team(self, nome_giocatore: str, prezzo: int, squadra_vincente_giocatore: Squadra,
+                                         lista_giocatori: list, ):
+    # portieri = Portiere()
+    squadra_vincente_giocatore.attaccanti.append(Giocatore(nome_giocatore, prezzo))
 
     update_remaining_credits(squadra_vincente_giocatore, prezzo)
     lista_giocatori.remove(nome_giocatore)

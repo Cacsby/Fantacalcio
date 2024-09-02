@@ -1,6 +1,6 @@
 import unittest
 
-from main import fantacalcio
+from main import main
 
 
 class MyTestCase(unittest.TestCase):
@@ -11,6 +11,6 @@ class MyTestCase(unittest.TestCase):
         print("teardown")
 
     def test_main(self):
-        response = fantacalcio(self)
+        response = main()
 
 

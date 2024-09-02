@@ -2,27 +2,26 @@ import random
 import pandas as pd
 
 from utilities import is_max_goalkeeper, print_all_team, \
-    create_goalkeeper_and_insert_in_team, choose_team, choose_price
+    create_goalkeeper_and_insert_in_team, choose_team, choose_price, is_max_striker, create_striker_and_insert_in_team
 
 
-def execute_portieri(self, file_path, fantacalcio:list):
+def execute_attaccanti(self, file_path, fantacalcio:list):
     # Se vuoi accedere a un foglio specifico, puoi farlo così:
-    df = pd.read_excel(file_path, sheet_name='Portieri', usecols='D:E')
+    df = pd.read_excel(file_path, sheet_name='Attaccanti', usecols='D:E')
     # Seleziona una colonna specifica
     # colonna_specifica = df['Nome']
     lista_giocatori = df.values.tolist()
     squadra_vincente_giocatore = None
     prezzo_giocatore_estratto = None
-    portieri_invenduti = []
+    difensori_invenduti = []
 
     # remove se si toglie prima riga file
     lista_giocatori.remove(lista_giocatori[0])
 
-    # lista_giocatori = ["Cristiano Ronchi",
-    #                    "Gianluigi Donnarumma"]
+
 
     while lista_giocatori:
-        print(f"Numero di portieri rimanenti: {len(lista_giocatori)}")
+        print(f"Numero di attaccanti rimanenti: {len(lista_giocatori)}")
 
         numero_random_lista_giocatori = random.randint(0, len(lista_giocatori)-1)
 
@@ -33,7 +32,7 @@ def execute_portieri(self, file_path, fantacalcio:list):
 
         while esito == "yes":
             try:
-                print_all_team(self, fantacalcio, portieri_invenduti)
+                print_all_team(self, fantacalcio, difensori_invenduti)
 
 
 
@@ -42,7 +41,7 @@ def execute_portieri(self, file_path, fantacalcio:list):
                 prezzo_giocatore_estratto = choose_price(self, giocatore_estratto)
 
                 if squadra_vincente_giocatore == 11:
-                    portieri_invenduti.append(giocatore_estratto)
+                    difensori_invenduti.append(giocatore_estratto)
                     if giocatore_estratto  in lista_giocatori:
                         lista_giocatori.remove(giocatore_estratto)
 
@@ -53,11 +52,15 @@ def execute_portieri(self, file_path, fantacalcio:list):
             except ValueError:
                 print("Inserire un valore numerico")
 
+        # if squadra_vincente_giocatore == 0:
+        #     create_goalkeeper_and_insert_in_team(self, giocatore_estratto, prezzo_giocatore_estratto, difensori_invenduti,
+        #                                          lista_giocatori)
 
         if 0 <= squadra_vincente_giocatore < len(fantacalcio):
             squadra = fantacalcio[squadra_vincente_giocatore]
-            if not is_max_goalkeeper(self, squadra):
-                create_goalkeeper_and_insert_in_team(self, giocatore_estratto, prezzo_giocatore_estratto, squadra,
+            if not is_max_striker(self, squadra):
+                create_striker_and_insert_in_team(self, giocatore_estratto, prezzo_giocatore_estratto, squadra,
                                                      lista_giocatori)
 
-    return fantacalcio, portieri_invenduti
+
+    return fantacalcio, difensori_invenduti
