@@ -41,7 +41,7 @@ def execute_portieri(self, file_path, fantacalcio:list):
                 squadra_vincente_giocatore= choose_team(self, giocatore_estratto)
                 prezzo_giocatore_estratto = choose_price(self, giocatore_estratto)
 
-                if squadra_vincente_giocatore == 11:
+                if squadra_vincente_giocatore == 0:
                     portieri_invenduti.append(giocatore_estratto)
                     if giocatore_estratto  in lista_giocatori:
                         lista_giocatori.remove(giocatore_estratto)
@@ -54,8 +54,12 @@ def execute_portieri(self, file_path, fantacalcio:list):
                 print("Inserire un valore numerico")
 
 
-        if 0 <= squadra_vincente_giocatore < len(fantacalcio):
-            squadra = fantacalcio[squadra_vincente_giocatore]
+        if 0 < squadra_vincente_giocatore < len(fantacalcio):
+            if squadra_vincente_giocatore== 0:
+                index = 0
+            else:
+                index = squadra_vincente_giocatore-1
+            squadra = fantacalcio[index]
             if not is_max_goalkeeper(self, squadra):
                 create_goalkeeper_and_insert_in_team(self, giocatore_estratto, prezzo_giocatore_estratto, squadra,
                                                      lista_giocatori)
