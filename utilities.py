@@ -1,4 +1,4 @@
-from classes import Giocatore, Squadra
+from src.classes import Giocatore, Squadra
 
 
 def is_max_goalkeeper(self, squadra: Squadra):
@@ -71,7 +71,7 @@ def update_remaining_credits(squadra_vincente_giocatore: Squadra, prezzo: int):
 def print_all_team(self, fantacalcio: list, lista_giocatori_invenduti: list):
     count = 1
     print("_____________________________________")
-    print(f"Digitare 11 se il giocatore non ha ricevuto offerte. Numero giocatori invenduti: {len(lista_giocatori_invenduti)}")
+    print(f"Digitare 0 se il giocatore non ha ricevuto offerte. Numero giocatori invenduti: {len(lista_giocatori_invenduti)}")
     print("_____________________________________")
     for squadra in fantacalcio:
         print(f"Digitare {count} per la squadra {squadra.nome_squadra}. Crediti rimanenti: {squadra.crediti_totali}. Portieri: {len(squadra.portieri)}. Difensori: {len(squadra.difensori)}. Centrocampisti: {len(squadra.centrocampisti)}. Attaccanti: {len(squadra.attaccanti)}")
@@ -85,10 +85,10 @@ def choose_team(self, giocatore_estratto: Giocatore):
             # if squadra_vincente_giocatore == 0:
             #     return squadra_vincente_giocatore
 
-            if 0 <= squadra_vincente_giocatore <= 11:
+            if 0 < squadra_vincente_giocatore < 11:
                 return squadra_vincente_giocatore
             else:
-                print("Il numero della squadra deve essere compreso tra 0 e 10.")
+                print("Il numero della squadra deve essere compreso tra 1 e 10.")
         except ValueError:
             print("Inserisci un valore numerico valido.")
 
