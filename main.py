@@ -1,11 +1,11 @@
 import pandas as pd
-import random
-from portieri import execute_portieri
-from difensori import execute_difensori
-from centrocampisti import execute_centrocampisti
-from attaccanti import execute_attaccanti
+from src.portieri import execute_portieri
+from src.difensori import execute_difensori
+from src.centrocampisti import execute_centrocampisti
+from src.attaccanti import execute_attaccanti
 
-from classes import Squadra, Portiere, Difensore, Centrocampista, Attaccante
+from src.classes import Squadra
+
 
 class FantacalcioApp:
     def __init__(self, file_path):
@@ -102,7 +102,7 @@ class FantacalcioApp:
         combined_df = pd.concat(dfs, axis=1)
 
         # Scrivi il DataFrame combinato in un unico foglio Excel
-        combined_df.to_excel("example_combined.xlsx", index=False)
+        combined_df.to_excel("recap_squadre.xlsx", index=False)
 
 
         # Stampa il contenuto del file
