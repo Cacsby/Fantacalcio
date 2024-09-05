@@ -1,8 +1,8 @@
 import random
 import pandas as pd
 
-from utilities import is_max_goalkeeper, print_all_team, \
-    create_goalkeeper_and_insert_in_team, choose_team, choose_price, create_defender_and_insert_in_team, is_max_defender
+from utilities import  print_all_team, \
+     choose_team, choose_price, create_defender_and_insert_in_team, is_max_defender
 
 
 def execute_difensori(self, file_path, fantacalcio:list):
@@ -39,7 +39,7 @@ def execute_difensori(self, file_path, fantacalcio:list):
                 squadra_vincente_giocatore= choose_team(self, giocatore_estratto)
                 prezzo_giocatore_estratto = choose_price(self, giocatore_estratto)
 
-                if squadra_vincente_giocatore == 11:
+                if squadra_vincente_giocatore == 0:
                     difensori_invenduti.append(giocatore_estratto)
                     if giocatore_estratto  in lista_giocatori:
                         lista_giocatori.remove(giocatore_estratto)
@@ -52,8 +52,12 @@ def execute_difensori(self, file_path, fantacalcio:list):
                 print("Inserire un valore numerico")
 
 
-        if 0 <= squadra_vincente_giocatore < len(fantacalcio):
-            squadra = fantacalcio[squadra_vincente_giocatore]
+        if 0 < squadra_vincente_giocatore < len(fantacalcio):
+            if squadra_vincente_giocatore== 0:
+                index = 0
+            else:
+                index = squadra_vincente_giocatore-1
+            squadra = fantacalcio[index]
             if not is_max_defender(self, squadra):
                 create_defender_and_insert_in_team(self, giocatore_estratto, prezzo_giocatore_estratto, squadra,
                                                      lista_giocatori)
